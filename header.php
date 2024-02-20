@@ -73,21 +73,19 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="index.php#">
-                            <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
+                        <form action="shop-fullwidth.php" method="POST">
+                            <select class="select-active" name="Category">
+                                <option Value="All Categories">All Categories</option>
+                                <?php
+                                $rows = $obj3->select_query("SELECT * FROM `tbl_products` GROUP BY `brand`");
+                                foreach ($rows as $row) {
+                                ?>
+                                    <option Value="<?php echo $row['brand'] ?>"><?php echo $row['brand'] ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
-                            <input type="text" placeholder="Search for items..." />
+                            <input type="text" placeholder="Search for items..." name="ItemName" />
                         </form>
                     </div>
                     <div class="header-action-right">
